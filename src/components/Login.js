@@ -5,6 +5,10 @@ const Login = (props) => {
   return (
     <Container>
       <Content>
+        <CTA>
+          <CTALogoOne src="/images/cta-logo-one.svg" />
+          <SignUp>GET ALL THERE</SignUp>
+        </CTA>
         <BgImage />
       </Content>
     </Container>
@@ -44,6 +48,55 @@ const BgImage = styled.div`
   left: 0;
   z-index: -1;
   background-image: url("/images/login-background.jpg");
+`;
+
+// const CTA = styled.div`
+//   margin-bottom: 2vw;
+//   max-width: 650px;
+//   flex-wrap: wrap;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   margin-top: 0;
+//   align-items: center;
+//   text-align: center;
+//   margin-right: auto;
+//   margin-left: auto;
+//   transition-timing-function: ease-out;
+//   transition: opacity 0.2s;
+//   width: 100%;
+// `;
+
+const CTA = styled.div`
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CTALogoOne = styled.img`
+  margin-bottom: 12px;
+  max-width: 600px;
+  min-height: 1px;
+  display: block;
+  width: 100%;
+`;
+
+const SignUp = styled.a`
+  font-weight: bold;
+  color: #f9f9f9;
+  background-color: #0063e5;
+  margin-bottom: 12px;
+  width: 100%;
+  letter-spacing: 1.5px;
+  font-size: 18px;
+  padding: 16.5px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #0483ee;
+  }
 `;
 
 export default Login;
