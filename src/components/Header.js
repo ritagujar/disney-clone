@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { auth, provider } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   selectUserName,
-  selectUserEmail,
   selectUserPhoto,
   setUserLoginDetails,
 } from "../features/user/userSlice";
@@ -15,6 +14,15 @@ const Header = (props) => {
   const history = useHistory();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+        history.push("/home");
+      }
+    });
+  }, [userName, history]);
 
   const handleAuth = () => {
     auth
