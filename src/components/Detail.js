@@ -7,6 +7,12 @@ const Detail = () => {
       <Background>
         <img src="/images/slider-badag.jpg" alt="" />
       </Background>
+      <ImageTitle>
+        <img
+          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78"
+          alt=""
+        />
+      </ImageTitle>
     </Container>
   );
 };
@@ -35,6 +41,24 @@ const Background = styled.div`
     @media (max-width: 768px) {
       width: initial;
     }
+  }
+`;
+
+const ImageTitle = styled.div`
+  align-items: flex-end;
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  margin: 0px auto;
+  height: 30vw;
+  min-height: 170px;
+  padding-bottom: 24px;
+  width: 100%;
+
+  img {
+    max-width: 600px;
+    min-width: 200px;
+    width: 35vw;
   }
 `;
 
