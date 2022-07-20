@@ -27,6 +27,11 @@ const Detail = () => {
             <span />
             <span />
           </AddList>
+          <GroupMatch>
+            <div>
+              <img src="/images/group-icon.png" alt="" />
+            </div>
+          </GroupMatch>
         </Controls>
       </ContentMeta>
     </Container>
@@ -155,6 +160,28 @@ const AddList = styled.div`
       height: 16px;
       transform: translateX(-8px) rotate(0deg);
       width: 2px;
+    }
+  }
+`;
+
+const GroupMatch = styled.div`
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: white;
+
+  div {
+    height: 40px;
+    width: 40px;
+    background: rgb(0, 0, 0);
+    border-radius: 50%;
+
+    img {
+      width: 100%;
     }
   }
 `;
