@@ -1,17 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import db from "../firebase";
 
-const Detail = () => {
+const Detail = (props) => {
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState({});
+
+  useEffect(() => {
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setDetailData(doc.data());
+        } else {
+          console.log("No such document in firebase 🔥");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [id]);
+
   return (
     <Container>
       <Background>
-        <img src="/images/slider-badag.jpg" alt="" />
+        <img alt={detailData.title} src={detailData.backgroundImg} />
       </Background>
+
       <ImageTitle>
-        <img
-          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78"
-          alt=""
-        />
+        <img alt={detailData.title} src={detailData.titleImg} />
       </ImageTitle>
       <ContentMeta>
         <Controls>
@@ -27,12 +47,14 @@ const Detail = () => {
             <span />
             <span />
           </AddList>
-          <GroupMatch>
+          <GroupWatch>
             <div>
               <img src="/images/group-icon.png" alt="" />
             </div>
-          </GroupMatch>
+          </GroupWatch>
         </Controls>
+        <SubTitle>{detailData.subTitle}</SubTitle>
+        <Description>{detailData.description}</Description>
       </ContentMeta>
     </Container>
   );
@@ -164,7 +186,7 @@ const AddList = styled.div`
   }
 `;
 
-const GroupMatch = styled.div`
+const GroupWatch = styled.div`
   height: 44px;
   width: 44px;
   border-radius: 50%;
@@ -183,6 +205,26 @@ const GroupMatch = styled.div`
     img {
       width: 100%;
     }
+  }
+`;
+
+const SubTitle = styled.div`
+  color: rgb(249, 249, 249);
+  font-size: 15px;
+  min-height: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+const Description = styled.div`
+  line-height: 1.4;
+  font-size: 20px;
+  padding: 16px 0px;
+  color: rgb(249, 249, 249);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 
